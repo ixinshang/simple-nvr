@@ -79,3 +79,6 @@ Each camera on a Raspberry Pi 3b+ writing to an external HDD seems to use ~9% CP
 ![CPU use](/images/cpu-use.png)
 
 Two _ieGeek_ cameras bought on Amazon run well when paired with a Raspberry Pi 3+. I suspect the Pi could easily handle more than 2 cameras given the CPU consumption.
+
+### 带密码启动
+nvr_user=Username nvr_password=Secret  node nvr-browser.js # 修改对应的值即可
