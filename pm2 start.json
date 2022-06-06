@@ -1,0 +1,19 @@
+{
+    "apps": [
+        {
+            "name": "nvr-browser",  
+            "script": "/root/simple-nvr/nvr-browser.js", // 要执行的脚本文件
+            "env": {
+                "nvr_user": "Username", // 用户名
+                "nvr_password": "Secret" // 密码
+            },
+//            "instances": 0,
+//            "exec_mode": "cluster", // 负载均衡
+//            "autorestart": true   // 自动重启
+        },
+        {
+            "name": "nvr",  
+            "script": "/root/simple-nvr/nvr.js", // 要执行的脚本文件
+            },
+    ]
+}
