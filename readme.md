@@ -54,7 +54,7 @@ The best results are achieved with a filewatcher script. The filewatcher looks f
 The streams are saved in 5 minute segments at "regular" 5 minute intervals (i.e. at 00:00:00, 00:05:00, 00:10:00, etc.). The naming configuration offered by `ffmpeg` allows for some customisation of the filenames, but we change the filenames to a "friendlier" UTC-like format of:
 ```
 yyyy-mm-ddThh mm ss.mkv
-``` 
+```
 This allows easy identification of the file time as a human, and the filename is also easily parsable back to a UTC time. 
 
 #### Saving location
@@ -80,5 +80,11 @@ Each camera on a Raspberry Pi 3b+ writing to an external HDD seems to use ~9% CP
 
 Two _ieGeek_ cameras bought on Amazon run well when paired with a Raspberry Pi 3+. I suspect the Pi could easily handle more than 2 cameras given the CPU consumption.
 
-### 带密码启动
+# **带密码启动**
+## 1: 使用node命令启用
+
 nvr_user=Username nvr_password=Secret  node nvr-browser.js # 修改对应的值即可
+
+## 2：使用pm2守护运行
+
+参见pm2_start.json

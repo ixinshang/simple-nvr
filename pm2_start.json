@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "nvr-browser",  
+            "name": "nvr-browser", // 给应用取个名字
             "script": "/root/simple-nvr/nvr-browser.js", // 要执行的脚本文件
             "env": {
                 "nvr_user": "Username", // 用户名
@@ -12,7 +12,7 @@
 //            "autorestart": true   // 自动重启
         },
         {
-            "name": "nvr",  
+            "name": "nvr", // 给应用取个名字
             "script": "/root/simple-nvr/nvr.js", // 要执行的脚本文件
             },
     ]
