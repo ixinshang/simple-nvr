@@ -1,4 +1,8 @@
 # Simple Network Video Recorder  in Node.js
+```
+[中文文档](readme_zh.md)
+```
+
 This is a simple Network Video Recorder (NVR) that is designed to run on cheap hardware, such as a Raspberry Pi with a hard drive. 24/7 video streams from network cameras are saved, and the recorded files are browsable from a basic web interface.
 
 ![Camera locations](/images/camera-locations.png)
@@ -79,94 +83,3 @@ Each camera on a Raspberry Pi 3b+ writing to an external HDD seems to use ~9% CP
 ![CPU use](/images/cpu-use.png)
 
 Two _ieGeek_ cameras bought on Amazon run well when paired with a Raspberry Pi 3+. I suspect the Pi could easily handle more than 2 cameras given the CPU consumption.
-
-# 中文安装说明
-
-## 1:初始化系统环境
-
-首选bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirrors.sh)，根据提示选择合适的加速源，以加速安装
-
-1：`sudo apt install nodejs npm ffmpeg`
-
-修改npm的源：
-
-`npm config set registry https://registry.npmmirror.com`
-
-`npm config get registry`
-
-如果得到'https://registry.npmmirror.com/',则加速源设置成功。
-
-2：`npm install pm2 -g`
-
-3：`npm install express`
-
-## 2: 下载simple-nvr
-
-`git clone https://github.com/ixinshang/simple-nvr.git`
-
-下载较慢，也可以采取其他的方式下载。
-
-## 3：修改参数
-
-`root@test-c92:~# cd simple-nvr/`
-
-### 1: 修改摄像头参数
-
-`vim cameras.json`，例如：
-
-`[`
-    `{`
-        `"name": "test",`
-        `"url": "rtsp://lxxxx:xxxxx@1.2.2.2:8554/proxied"`
-    `},`
-    `{`
-        `"name": "test2",`
-        `"url": "rtsp://lxxxx:xxxxx@1.1.1.2:8554/proxied"`
-    `}`
-`]`
-
-### 2: 修改存储位置参数
-
-`vim storage.json`，例如：
-
-`{
-    "rootpath": "/root/simple-nvr/snvr"
-}`
-
-## 4：运行simpel-nvr
-
-### 1: `node nvr.js` 
-
-后台录像，默认端口3001，可查看参数
-
-### 2: `node nvr-browser.js` 
-
-web页面，可以在线查看情况，默认端口3000
-
-## 5:**带密码启动(两种方法)**
-
-### 1: 使用node命令启用
-
-`nvr_user=Username nvr_password=Secret  node nvr-browser.js` # 修改对应的值即可
-
-### 2:使用pm2守护运行
-
-参见pm2_start.json
-
-注意，pm2的常用命令
-
-`sudo pm2 startup`
-
-`systemctl enable pm2-root`
-
-`systemctl status pm2-root`
-
-`systemctl start pm2-root`
-
-## 6:未完事宜
-
-1：mkv在浏览器播放有问题；
-
-2：大文件的定时删除；
-
-3：时区的调整
