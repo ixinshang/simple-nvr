@@ -147,9 +147,13 @@ nvr_user=Username nvr_password=Secret  node nvr-browser.js
 
 根据实际使用情况，修改scripts/delete.sh中的视频需要保留的时间和文件存放位置，借助crontab即可定时清理过期的视频。
 
-### 6.3 时区的调整
+### ~~6.3 时区的调整~~
 
 不熟悉js,还不知道如何下手。
+
+### 6.4  每天在0点创建文件夹
+
+没太搞懂这个文件夹的创建机制。
 
 **致谢:**
 
