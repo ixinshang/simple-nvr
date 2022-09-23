@@ -66,18 +66,18 @@ git clone https://github.com/ixinshang/simple-nvr.git
 vim cameras.json
 ```
 
-，例如：
+例如：
 
-`[`
-    `{`
-        `"name": "test",`
-        `"url": "rtsp://lxxxx:xxxxx@1.2.2.2:8554/proxied"`
-    `},`
-    `{`
-        `"name": "test2",`
-        `"url": "rtsp://lxxxx:xxxxx@1.1.1.2:8554/proxied"`
-    `}`
-`]`
+`[
+    {
+        "name": "example-camera-name",
+        "url": "rtsp://192.168.255.255:554/11"
+    },
+    {
+        "name": "example-camera-name",
+        "url": "rtsp://192.168.255.255:554/11"
+    }
+]`
 
 
 
