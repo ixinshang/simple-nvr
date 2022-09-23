@@ -68,7 +68,8 @@ vim cameras.json
 
 例如：
 
-`[
+```
+[
     {
         "name": "example-camera-name",
         "url": "rtsp://192.168.255.255:554/11"
@@ -77,7 +78,8 @@ vim cameras.json
         "name": "example-camera-name",
         "url": "rtsp://192.168.255.255:554/11"
     }
-]`
+]
+```
 
 
 
