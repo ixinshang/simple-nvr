@@ -49,7 +49,8 @@ class CameraStream {
             "-segment_format", "mkv",
             "-segment_atclocktime", "1",
             "-strftime", "1",
-            `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S%z.mkv")}`
+            // `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S%z.mkv")}`
+            `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S.mkv")}` // 不打印时区
         ];
 
         this.initTimeoutWatcher();
@@ -84,17 +85,20 @@ class CameraStream {
         )
     }
 
+// 尝试取消掉合并文件    
     initCombinationCron() {
         new CronJob('0 1 * * *', async () => {
             try {
                 const yesterday = new Date()
-                yesterday.setUTCHours(-24, 0, 0, 0);
+                yesterday.setUTCHours(8, 0, 0, 0);
+//                yesterday.setUTCHours(-24, 0, 0, 0);
                 const dayDir = dayDirectory(this.storagePath, yesterday)
-                await videoConcatinator.combineFilesInDirectory(dayDir, true);
+//                await videoConcatinator.combineFilesInDirectory(dayDir, true);  尝试取消合并
             } catch (error) {
                 console.log('error combining files', error);
             }
-        }, null, true, 'UTC');
+//        }, null, true, 'UTC'); 尝试更换时区
+        }, null, true, 'Asia/Shanghai');
     }
 
     log(message, ...optionalParams) {
@@ -188,7 +192,9 @@ class CameraStream {
         }
         const newDirectory = dayDirectory(this.storagePath, date);
         await fsAsync.mkdir(newDirectory, { recursive: true });
-        const newFilename = `${date.toISOString().split(':').join(' ').split('.')[0]}.mkv`;
+        // const newFilename = `${date.toISOString().split(':').join(' ').split('.')[0]}.mkv`;
+        const newFilename = `${dateString.split(':').join(' ').split('.')[0]}.mkv`;
+        // const newFilename = `${dateString}.mkv`;
         const newFilepath = path.join(newDirectory, newFilename);
         await fsAsync.rename(filepath, newFilepath);
         this.log(`Moved ${date.toISOString()}`);
