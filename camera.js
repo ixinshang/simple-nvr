@@ -85,19 +85,17 @@ class CameraStream {
         )
     }
 
-// 尝试取消掉合并文件    
+// locatimezone    
     initCombinationCron() {
         new CronJob('0 1 * * *', async () => {
             try {
                 const yesterday = new Date()
-                yesterday.setUTCHours(8, 0, 0, 0);
-//                yesterday.setUTCHours(-24, 0, 0, 0);
+                yesterday.setHours(-24, 0, 0, 0);
                 const dayDir = dayDirectory(this.storagePath, yesterday)
-//                await videoConcatinator.combineFilesInDirectory(dayDir, true);  尝试取消合并
+                await videoConcatinator.combineFilesInDirectory(dayDir, true);
             } catch (error) {
                 console.log('error combining files', error);
             }
-//        }, null, true, 'UTC'); 尝试更换时区
         }, null, true, 'Asia/Shanghai');
     }
 
@@ -201,11 +199,11 @@ class CameraStream {
     }
 }
 
-
+// locatimezone
 function dayDirectory(baseDir = '/', date = new Date()) {
-    const year = add_zero(date.getUTCFullYear());
-    const month = add_zero(date.getUTCMonth() + 1);
-    const day = add_zero(date.getUTCDate());
+    const year = add_zero(date.getFullYear());
+    const month = add_zero(date.getMonth() + 1);
+    const day = add_zero(date.getDate());
     return path.join(baseDir, year, month, day);
 }
 
