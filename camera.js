@@ -49,8 +49,7 @@ class CameraStream {
             "-segment_format", "mkv",
             "-segment_atclocktime", "1",
             "-strftime", "1",
-            // `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S%z.mkv")}`
-            `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S.mkv")}` // 不打印时区
+            `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S.mkv")}`
         ];
 
         this.initTimeoutWatcher();
@@ -190,9 +189,7 @@ class CameraStream {
         }
         const newDirectory = dayDirectory(this.storagePath, date);
         await fsAsync.mkdir(newDirectory, { recursive: true });
-        // const newFilename = `${date.toISOString().split(':').join(' ').split('.')[0]}.mkv`;
         const newFilename = `${dateString.split(':').join(' ').split('.')[0]}.mkv`;
-        // const newFilename = `${dateString}.mkv`;
         const newFilepath = path.join(newDirectory, newFilename);
         await fsAsync.rename(filepath, newFilepath);
         this.log(`Moved ${date.toISOString()}`);
