@@ -49,7 +49,7 @@ class CameraStream {
             "-segment_format", "mkv",
             "-segment_atclocktime", "1",
             "-strftime", "1",
-            `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S.mkv")}`
+            `${path.join(this.rawStoragePath, "%Y-%m-%dT%H %M %S%z.mkv")}`
         ];
 
         this.initTimeoutWatcher();
@@ -99,7 +99,8 @@ class CameraStream {
     }
 
     log(message, ...optionalParams) {
-        console.log(`${new Date().toISOString()} [${this.name}] ${message}`, ...optionalParams);
+//        console.log(`${new Date().toISOString()} [${this.name}] ${message}`, ...optionalParams);
+        console.log(`${new Date().String()} [${this.name}] ${message}`, ...optionalParams);
     }
 
     restartRecording() {
@@ -192,7 +193,8 @@ class CameraStream {
         const newFilename = `${dateString.split(':').join(' ').split('.')[0]}.mkv`;
         const newFilepath = path.join(newDirectory, newFilename);
         await fsAsync.rename(filepath, newFilepath);
-        this.log(`Moved ${date.toISOString()}`);
+//        this.log(`Moved ${date.toISOString()}`);
+        this.log(`Moved ${date.String()}`);
     }
 }
 
