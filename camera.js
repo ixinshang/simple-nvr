@@ -100,7 +100,7 @@ class CameraStream {
 
     log(message, ...optionalParams) {
 //        console.log(`${new Date().toISOString()} [${this.name}] ${message}`, ...optionalParams);
-        console.log(`${new Date().String()} [${this.name}] ${message}`, ...optionalParams);
+        console.log(`${new Date()} [${this.name}] ${message}`, ...optionalParams);
     }
 
     restartRecording() {
@@ -194,7 +194,7 @@ class CameraStream {
         const newFilepath = path.join(newDirectory, newFilename);
         await fsAsync.rename(filepath, newFilepath);
 //        this.log(`Moved ${date.toISOString()}`);
-        this.log(`Moved ${date.String()}`);
+        this.log(`Moved ${date}`);
     }
 }
 
